@@ -19,7 +19,12 @@ ground_surface = pygame.image.load('graphics/ground.png').convert()
 text_surface = test_font.render('My Game', False, 'Gray') #text, AA (rounds corners), color.
 
 snail_surface = pygame.image.load('graphics/snail/snail1.png').convert_alpha() # so iot looks nicer
-snail_x_position = 600
+#snail_x_position = 600
+snail_rectangle = snail_surface.get_rect(midbottom = (80,300))
+
+player_surface = pygame.image.load('graphics/Player/player_walk_1.png').convert_alpha()
+#player_rectangle = pygame.Rect(left,top,width,height)
+player_rectangle = player_surface.get_rect(midbottom = (80,300))
 
 while True:
     #event loop
@@ -37,12 +42,18 @@ while True:
     screen.blit(ground_surface,(0,300))
     screen.blit(text_surface, (300,50)) #x,y
     
-    snail_x_position += -10 #speed, fps. (+ direction)
-    if snail_x_position < -100:
-      snail_x_position = 600
+    # snail_x_position += -10 #speed, fps. (+ direction)
+    # if snail_x_position < -100:
+    #   snail_x_position = 600
       
-    screen.blit(snail_surface, (snail_x_position, 265))
-
+    #screen.blit(snail_surface, (snail_x_position, 265))
+    snail_rectangle.x -= 4
+    #snail_rectangle.left += -1
+    if snail_rectangle.right <= 0: snail_rectangle.left = 800
+    screen.blit(snail_surface, snail_rectangle)
+  
+    player_rectangle.left += 3
+    screen.blit(player_surface, player_rectangle)
   
     pygame.display.update()
     clock.tick(60)
