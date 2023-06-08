@@ -14,3 +14,12 @@ tuple = values inside can never be changed
 
 [rectangle](https://ibb.co/mSbtGt1) 
 
+## collide point
+rect1.collidepoint((x,y))
+gives a point where the colliusion is at.
+
+
+getiing mouse positoon:
+
+pygame.mouse -> mouse position, clicks buttons, visiubilitu, etc.
+event loop -> checks events

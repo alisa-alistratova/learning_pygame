@@ -18,6 +18,8 @@ sky_surface = pygame.image.load('graphics/Sky.png').convert() #converst png imag
 ground_surface = pygame.image.load('graphics/ground.png').convert()
 text_surface = test_font.render('My Game', False, 'Gray') #text, AA (rounds corners), color.
 
+#RECTANGLES
+
 snail_surface = pygame.image.load('graphics/snail/snail1.png').convert_alpha() # so iot looks nicer
 #snail_x_position = 600
 snail_rectangle = snail_surface.get_rect(midbottom = (80,300))
@@ -27,36 +29,50 @@ player_surface = pygame.image.load('graphics/Player/player_walk_1.png').convert_
 player_rectangle = player_surface.get_rect(midbottom = (80,300))
 
 while True:
-    #event loop
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit() #opposite of pygame.init
-            exit()
-    #draw all our elements
-    #update everything
 
-    #screen.blit(test_surface,(300,300)) #blit - block image transfer
-    #screen.blit(test_surface2,(0,0))
-    
-    screen.blit(sky_surface,(0,0))
-    screen.blit(ground_surface,(0,300))
-    screen.blit(text_surface, (300,50)) #x,y
-    
-    # snail_x_position += -10 #speed, fps. (+ direction)
-    # if snail_x_position < -100:
-    #   snail_x_position = 600
-      
-    #screen.blit(snail_surface, (snail_x_position, 265))
-    snail_rectangle.x -= 4
-    #snail_rectangle.left += -1
-    if snail_rectangle.right <= 0: snail_rectangle.left = 800
-    screen.blit(snail_surface, snail_rectangle)
+  #event loop
+  for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+          pygame.quit() #opposite of pygame.init
+          exit()
+      #if event.type == pygame.MOUSEMOTION:
+      if event.type == pygame.MOUSEBUTTONDOWN:
+        print('mouse down')
+  #draw all our elements
+  #update everything
+
+  #screen.blit(test_surface,(300,300)) #blit - block image transfer
+  #screen.blit(test_surface2,(0,0))
   
-    player_rectangle.left += 3
-    screen.blit(player_surface, player_rectangle)
+  screen.blit(sky_surface,(0,0))
+  screen.blit(ground_surface,(0,300))
+  screen.blit(text_surface, (300,50)) #x,y
   
-    pygame.display.update()
-    clock.tick(60)
+  # snail_x_position += -10 #speed, fps. (+ direction)
+  # if snail_x_position < -100:
+  #   snail_x_position = 600
+    
+  #screen.blit(snail_surface, (snail_x_position, 265))
+  snail_rectangle.x -= 4
+  #snail_rectangle.left += -1
+  if snail_rectangle.right <= 0: snail_rectangle.left = 800
+  screen.blit(snail_surface, snail_rectangle)
+
+  #player_rectangle.left += 3
+  screen.blit(player_surface, player_rectangle)
+
+  #COLLISION
+  # if (player_rectangle.colliderect(snail_rectangle)):
+  #   print('collision')
+
+  #mouse_pos = pygame.mouse.get_pos()
+  #if player_rectangle.collidepoint(mouse_pos): #gets the mouse position and prints collidison when mouse is there.
+    #print(pygame.mouse.get_pressed())
+
+  #rect1.collidepoint(xy,)
+
+  pygame.display.update()
+  clock.tick(60)
 
 #Surfaces (Regular + Display Surface)
 #Display surface - think of it like a poster to put things on (can have only 1)
